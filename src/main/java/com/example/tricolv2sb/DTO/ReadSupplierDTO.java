@@ -1,5 +1,6 @@
 package com.example.tricolv2sb.DTO;
 
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -8,29 +9,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CreateSupplierDTO {
+public class ReadSupplierDTO {
 
     @NotBlank
-    @Size(min = 2, max = 100)
     private String companyName;
-
-    @NotBlank
-    private String address;
-
-    @NotBlank
-    @Size(min = 2, max = 50)
-    private String city;
 
     @Email
     private String Email;
 
     @NotBlank
     private String phone;
-
-    @NotBlank
-    private String ice;
-
-    @NotBlank
-    private String contactPerson;
 }
-
