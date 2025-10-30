@@ -1,43 +1,38 @@
 package com.example.tricolv2sb.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Set;
 
-import java.io.Serializable;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "supplier")
-public class Supplier implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "suppliers")
+@Data
+public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "company_name", nullable = false)
+    
+    @Column(nullable = false)
     private String companyName;
-
-    @Column(name = "address")
+    
+    @Column(nullable = false)
     private String address;
-
-    @Column(name = "contact_person")
-    private String contactPerson;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "city", nullable = false) // 'ville', required
+    
+    @Column(nullable = false)
     private String city;
-
-    @Column(name = "ice", nullable = false, unique = true)
-    private String ICE;
+    
+    @Column(nullable = false)
+    private String email;
+    
+    @Column(nullable = false)
+    private String phone;
+    
+    @Column(nullable = false, unique = true)
+    private String ice;
+    
+    @Column(nullable = false)
+    private String contactPerson;
+    
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<PurchaseOrder> purchaseOrders;
 }
