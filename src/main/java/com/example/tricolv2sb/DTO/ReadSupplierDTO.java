@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 public class ReadSupplierDTO {
 
     @NotBlank
+    private Long id;
+
+    @NotBlank
     private String companyName;
 
     @Email

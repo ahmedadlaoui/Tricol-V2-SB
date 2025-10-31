@@ -1,0 +1,1 @@
+2025-10-31T14:46:51.209+01:00 ERROR 19980 --- [Tricol-V2-SB] [http-nio-8080-exec-2] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 4 not found
