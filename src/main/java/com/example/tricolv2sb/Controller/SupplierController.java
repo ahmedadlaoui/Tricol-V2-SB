@@ -31,9 +31,9 @@ public class SupplierController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ReadSupplierDTO> removeExistingSupplier(@PathVariable Long id){
-        return supplierService.deleteSupplier(id)
-                .map(supplierDTO -> ResponseEntity.ok().body(supplierDTO))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public ResponseEntity<String> removeExistingSupplier(@PathVariable Long id) {
+        supplierService.deleteSupplier(id);
+        return ResponseEntity.ok("Supplier with id: " + id + " successfully deleted.");
     }
+
 }

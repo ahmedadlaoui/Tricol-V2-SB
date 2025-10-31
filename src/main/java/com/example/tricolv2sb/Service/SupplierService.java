@@ -40,23 +40,20 @@ public class SupplierService implements SupplierServiceInterface {
 
     @Transactional(readOnly = true)
     public Optional<ReadSupplierDTO> fetchSupplier(Long id) {
-        Optional<ReadSupplierDTO> supplierDto = supplierRepository.findById(id)
-                .map(supplierMapper::toDto);
-        if (supplierDto.isEmpty()) {
-            throw new SupplierNotFoundException("Supplier with ID " + id + " not found");
-        }
-        return supplierDto;
+        return Optional.of(
+                supplierRepository.findById(id)
+                        .map(supplierMapper::toDto)
+                        .orElseThrow(() -> new SupplierNotFoundException("Supplier with ID " + id + " not found"))
+        );
     }
 
 
     @Transactional
-    public Optional<ReadSupplierDTO> deleteSupplier(Long id){
-        Optional<ReadSupplierDTO> supplierDto = supplierRepository.findById(id)
-                .map(supplierMapper::toDto);
-        if (supplierDto.isEmpty()) {
-            throw new SupplierNotFoundException("Supplier with ID " + id + " not found");
-        }
+    public void deleteSupplier(Long id) {
+        Supplier supplier = supplierRepository.findById(id)
+                .orElseThrow(() -> new SupplierNotFoundException("Supplier with ID " + id + " not found"));
 
+        supplierRepository.deleteById(id);
     }
 
 }
