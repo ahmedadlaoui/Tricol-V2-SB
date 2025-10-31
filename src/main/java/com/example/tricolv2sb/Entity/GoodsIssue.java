@@ -1,5 +1,7 @@
 package com.example.tricolv2sb.Entity;
 
+import com.example.tricolv2sb.Entity.Enum.GoodsIssueMotif;
+import com.example.tricolv2sb.Entity.Enum.GoodsIssueStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;

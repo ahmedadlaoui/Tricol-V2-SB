@@ -1,5 +1,6 @@
 package com.example.tricolv2sb.Entity;
 
+import com.example.tricolv2sb.Entity.Enum.StockMovementType;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
