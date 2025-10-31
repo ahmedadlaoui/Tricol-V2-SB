@@ -9,4 +9,5 @@ public interface SupplierServiceInterface {
     public Optional<ReadSupplierDTO> fetchSupplier(Long id);
     public ReadSupplierDTO addSupplier(CreateSupplierDTO dto);
     public void deleteSupplier(Long id);
+    public ReadSupplierDTO updateSupplier(Long id, CreateSupplierDTO dto);
 }

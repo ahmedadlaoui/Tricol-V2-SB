@@ -10,9 +10,11 @@ import com.example.tricolv2sb.Repository.SupplierRepository;
 import com.example.tricolv2sb.Service.ServiceInterfaces.SupplierServiceInterface;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -56,4 +58,15 @@ public class SupplierService implements SupplierServiceInterface {
         supplierRepository.deleteById(id);
     }
 
+    @Transactional
+    public ReadSupplierDTO updateSupplier(Long id, CreateSupplierDTO dto) {
+
+        Supplier existingSupplier = supplierRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Supplier with ID " + id + " not found"
+                ));
+        supplierMapper.updateFromDto(dto, existingSupplier);
+        Supplier savedSupplier = supplierRepository.save(existingSupplier);
+        return supplierMapper.toDto(savedSupplier);
+    }
 }

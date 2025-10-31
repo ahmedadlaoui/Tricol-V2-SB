@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/supplier")
 @RequiredArgsConstructor
@@ -34,6 +37,15 @@ public class SupplierController {
     public ResponseEntity<String> removeExistingSupplier(@PathVariable Long id) {
         supplierService.deleteSupplier(id);
         return ResponseEntity.ok("Supplier with id: " + id + " successfully deleted.");
+    }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<Map<String, Object>> updateExistingSupplier(@PathVariable Long id, @Valid @RequestBody CreateSupplierDTO dto) {
+        ReadSupplierDTO updatedSupplier = supplierService.updateSupplier(id, dto);
+        Map<String, Object> body = new HashMap<>();
+        body.put("message", "Supplier updated successfully");
+        body.put("updatedSupplier", updatedSupplier);
+        return ResponseEntity.ok(body);
     }
 
 }

@@ -1,2 +1,550 @@
 2025-10-31T14:46:51.209+01:00 ERROR 19980 --- [Tricol-V2-SB] [http-nio-8080-exec-2] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 4 not found
 2025-10-31T15:35:32.745+01:00 ERROR 21008 --- [Tricol-V2-SB] [http-nio-8080-exec-2] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 7 not found
+2025-10-31T15:43:24.749+01:00 ERROR 21772 --- [Tricol-V2-SB] [http-nio-8080-exec-2] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 1 not found
+2025-10-31T15:44:11.903+01:00 ERROR 21772 --- [Tricol-V2-SB] [http-nio-8080-exec-6] c.e.tricolv2sb.Service.SupplierService   : Error adding new supplier : Supplier with this ICE: 0192457890003 already exists
+2025-10-31T16:27:30.703+01:00 ERROR 14704 --- [Tricol-V2-SB] [main] liquibase.changelog                      : ChangeSet db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni encountered an exception.
+
+liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:267) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:241) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:326) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:278) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.example.tricolv2sb.TricolV2SbApplication.main(TricolV2SbApplication.java:10) ~[classes/:na]
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491) ~[liquibase-core-4.31.1.jar:na]
+	... 65 common frames omitted
+
+2025-10-31T16:27:31.695+01:00 ERROR 14704 --- [Tricol-V2-SB] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.example.tricolv2sb.TricolV2SbApplication.main(TricolV2SbApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 10 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:288) ~[liquibase-core-4.31.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:300) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:241) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:326) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:278) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:271) ~[liquibase-core-4.31.1.jar:na]
+	... 19 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253) ~[liquibase-core-4.31.1.jar:na]
+	... 37 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:840) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:267) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-4.31.1.jar:na]
+	... 45 common frames omitted
+Caused by: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790) ~[liquibase-core-4.31.1.jar:na]
+	... 60 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491) ~[liquibase-core-4.31.1.jar:na]
+	... 65 common frames omitted
+
+2025-10-31T16:29:17.159+01:00 ERROR 19596 --- [Tricol-V2-SB] [main] liquibase.changelog                      : ChangeSet db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni encountered an exception.
+
+liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:267) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:241) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:326) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:278) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.example.tricolv2sb.TricolV2SbApplication.main(TricolV2SbApplication.java:10) ~[classes/:na]
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491) ~[liquibase-core-4.31.1.jar:na]
+	... 65 common frames omitted
+
+2025-10-31T16:29:17.850+01:00 ERROR 19596 --- [Tricol-V2-SB] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.example.tricolv2sb.TricolV2SbApplication.main(TricolV2SbApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 10 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:288) ~[liquibase-core-4.31.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:300) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:186) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.execute(CommandScope.java:241) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:216) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:1333) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:205) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:188) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:326) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:278) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:271) ~[liquibase-core-4.31.1.jar:na]
+	... 19 common frames omitted
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:155) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:114) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:112) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:100) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.command.CommandScope.lambda$execute$6(CommandScope.java:253) ~[liquibase-core-4.31.1.jar:na]
+	... 37 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/db.changelog-master.sql::002-create-products-table::ismailbaguni:
+     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:840) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:126) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:70) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$0(ChangeLogIterator.java:133) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.lambda$run$1(ChangeLogIterator.java:122) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:201) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:210) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:200) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:267) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.Scope.child(Scope.java:271) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:91) ~[liquibase-core-4.31.1.jar:na]
+	... 45 common frames omitted
+Caused by: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2 [Failed SQL: (1064) CREATE TABLE IF NOT EXISTS products (
+                                        id BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    unit_price INTEGER NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    current_stock DOUBLE PRECISION NOT NULL,
+    reorder_point DOUBLE PRECISION NOT NULL,
+    unit_of_measure VARCHAR(255) NOT NULL
+    )]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:497) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:185) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.executor.AbstractExecutor.execute(AbstractExecutor.java:141) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1189) ~[liquibase-core-4.31.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:790) ~[liquibase-core-4.31.1.jar:na]
+	... 60 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BIGSERIAL PRIMARY KEY,
+                                        reference VARCHAR' at line 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:837) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:685) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:491) ~[liquibase-core-4.31.1.jar:na]
+	... 65 common frames omitted
+
+2025-10-31T16:31:58.452+01:00 ERROR 21056 --- [Tricol-V2-SB] [http-nio-8080-exec-3] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 4 not found
+2025-10-31T16:32:11.854+01:00 ERROR 21056 --- [Tricol-V2-SB] [http-nio-8080-exec-8] c.e.tricolv2sb.Service.SupplierService   : Error fetching supplier : Supplier with ID 7 not found
