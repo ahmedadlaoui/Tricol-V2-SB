@@ -20,19 +20,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SupplierAlreadyExistsException.class)
     public ResponseEntity<Map<String, Object>> handleSupplierConflict(SupplierAlreadyExistsException e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("Status", HttpStatus.CONFLICT.value());
-        body.put("Message", e.getMessage());
-        logger.error("Error adding new supplier : " + e.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+        return buildErrorResponse(HttpStatus.CONFLICT, "Error adding new supplier : ", e);
     }
 
     @ExceptionHandler(SupplierNotFoundException.class)
     public ResponseEntity<Map<String, Object>> handleSupplierNotFound(SupplierNotFoundException e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("Status", HttpStatus.NOT_FOUND.value());
-        body.put("Message", e.getMessage());
-        logger.error("Error fetching supplier : " + e.getMessage());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Error fetching supplier : ", e);
     }
+
+    private ResponseEntity<Map<String, Object>> buildErrorResponse(HttpStatus status, String logPrefix, Exception e) {
+        logger.error(logPrefix + e.getMessage());
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("Status", status.value());
+        body.put("Message", e.getMessage());
+
+        return ResponseEntity.status(status).body(body);
+    }
+
 }
