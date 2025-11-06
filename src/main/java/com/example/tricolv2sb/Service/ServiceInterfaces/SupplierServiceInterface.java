@@ -3,11 +3,17 @@ package com.example.tricolv2sb.Service.ServiceInterfaces;
 import com.example.tricolv2sb.DTO.CreateSupplierDTO;
 import com.example.tricolv2sb.DTO.ReadSupplierDTO;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface SupplierServiceInterface {
-    public Optional<ReadSupplierDTO> fetchSupplier(Long id);
-    public ReadSupplierDTO addSupplier(CreateSupplierDTO dto);
-    public void deleteSupplier(Long id);
-    public ReadSupplierDTO updateSupplier(Long id, CreateSupplierDTO dto);
+    List<ReadSupplierDTO> fetchAllSuppliers();
+
+    Optional<ReadSupplierDTO> fetchSupplier(Long id);
+
+    ReadSupplierDTO addSupplier(CreateSupplierDTO dto);
+
+    void deleteSupplier(Long id);
+
+    ReadSupplierDTO updateSupplier(Long id, CreateSupplierDTO dto);
 }

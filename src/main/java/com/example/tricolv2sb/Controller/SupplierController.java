@@ -9,12 +9,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/suppliers")
 @RequiredArgsConstructor
 public class SupplierController {
 
     private final SupplierServiceInterface supplierService;
+
+    /**
+     * GET /api/v1/suppliers
+     * Gets a list of all suppliers.
+     */
+    @GetMapping
+    public ResponseEntity<List<ReadSupplierDTO>> getAllSuppliers() {
+        List<ReadSupplierDTO> suppliers = supplierService.fetchAllSuppliers();
+        return ResponseEntity.ok(suppliers);
+    }
 
     /**
      * POST /api/v1/suppliers
@@ -42,7 +54,8 @@ public class SupplierController {
      * Updates an existing supplier.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<ReadSupplierDTO> updateSupplier(@PathVariable Long id, @Valid @RequestBody CreateSupplierDTO dto) {
+    public ResponseEntity<ReadSupplierDTO> updateSupplier(@PathVariable Long id,
+            @Valid @RequestBody CreateSupplierDTO dto) {
         ReadSupplierDTO updatedSupplier = supplierService.updateSupplier(id, dto);
         return ResponseEntity.ok(updatedSupplier);
     }
