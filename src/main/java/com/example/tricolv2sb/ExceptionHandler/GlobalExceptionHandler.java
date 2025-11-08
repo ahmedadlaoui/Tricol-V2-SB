@@ -45,6 +45,16 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.NOT_FOUND, "Error fetching purchase order : ", e);
     }
 
+    @ExceptionHandler(GoodsIssueNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleGoodsIssueNotFound(GoodsIssueNotFoundException e) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Error fetching goods issue : ", e);
+    }
+
+    @ExceptionHandler(StockMovementNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleStockMovementNotFound(StockMovementNotFoundException e) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Error fetching stock movement : ", e);
+    }
+
     @ExceptionHandler(IllegalStateException.class)
     public ResponseEntity<Map<String, Object>> handleIllegalState(IllegalStateException e) {
         logger.error("Illegal state operation: {}", e.getMessage());
