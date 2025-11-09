@@ -14,8 +14,8 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/commandes")
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/purchase-orders")
 public class PurchaseOrderController implements PurchaseOrderControllerInterface {
     
     private final PurchaseOrderService purchaseOrderService;
@@ -54,5 +54,10 @@ public class PurchaseOrderController implements PurchaseOrderControllerInterface
     public ResponseEntity<List<ReadPurchaseOrderDTO>> getPurchaseOrdersBySupplier(Long id) {
         List<ReadPurchaseOrderDTO> purchaseOrders = purchaseOrderService.getPurchaseOrdersBySupplier(id);
         return ResponseEntity.ok(purchaseOrders);
+    }
+      @PutMapping("/{id}/reception")
+    public ResponseEntity<String> receiveOrder(@PathVariable Long id) {
+        purchaseOrderService.receiveOrder(id);
+        return ResponseEntity.ok("Purchase order " + id + " has been successfully received and stock lots created");
     }
 }

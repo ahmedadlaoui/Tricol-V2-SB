@@ -22,7 +22,7 @@ public class CreateSupplierDTO {
     private String city;
 
     @Email
-    private String Email;
+    private String email;
 
     @NotBlank
     private String phone;
@@ -33,4 +33,3 @@ public class CreateSupplierDTO {
     @NotBlank
     private String contactPerson;
 }
-
