@@ -6,7 +6,7 @@ import com.example.tricolv2sb.DTO.UpdateProductDTO;
 import com.example.tricolv2sb.Entity.Product;
 import com.example.tricolv2sb.Mapper.ProductMapper;
 import com.example.tricolv2sb.Repository.ProductRepository;
-import com.example.tricolv2sb.Service.interfaces.ProductInterface;
+import com.example.tricolv2sb.Service.ServiceInterfaces.ProductInterface;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
