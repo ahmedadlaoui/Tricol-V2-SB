@@ -15,7 +15,6 @@ public interface PurchaseOrderMapper {
     @Mapping(target = "orderDate", ignore = true)
     @Mapping(target = "status", ignore = true)
     @Mapping(target = "totalAmount", ignore = true)
-    @Mapping(target = "receptionDate", ignore = true)
     @Mapping(target = "supplier", ignore = true)
     @Mapping(target = "orderLines", ignore = true)
     PurchaseOrder toEntity(CreatePurchaseOrderDTO createDto);

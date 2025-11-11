@@ -34,7 +34,7 @@ public class PurchaseOrderLineService implements PurchaseOrderLineServiceInterfa
         List<PurchaseOrderLine> orderLines = orderLineRepository.findAll();
 
         if (orderLines.isEmpty()) {
-            return List.of(); // Return empty list
+            return List.of();
         }
 
         return orderLines.stream()
@@ -53,17 +53,14 @@ public class PurchaseOrderLineService implements PurchaseOrderLineServiceInterfa
 
     @Transactional
     public ReadPurchaseOrderLineDTO createPurchaseOrderLine(CreatePurchaseOrderLineDTO dto) {
-        // Verify that the purchase order exists
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(dto.getPurchaseOrderId())
                 .orElseThrow(() -> new PurchaseOrderNotFoundException(
                         "Purchase order with ID " + dto.getPurchaseOrderId() + " not found"));
 
-        // Verify that the product exists
         Product product = productRepository.findById(dto.getProductId())
                 .orElseThrow(() -> new ProductNotFoundException(
                         "Product with ID " + dto.getProductId() + " not found"));
 
-        // Create the purchase order line
         PurchaseOrderLine orderLine = orderLineMapper.toEntity(dto);
         orderLine.setPurchaseOrder(purchaseOrder);
         orderLine.setProduct(product);

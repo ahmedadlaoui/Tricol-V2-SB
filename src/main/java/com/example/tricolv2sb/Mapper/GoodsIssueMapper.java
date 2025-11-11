@@ -6,7 +6,7 @@ import com.example.tricolv2sb.DTO.UpdateGoodsIssueDTO;
 import com.example.tricolv2sb.Entity.GoodsIssue;
 import org.mapstruct.*;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { GoodsIssueLineMapper.class })
 public interface GoodsIssueMapper {
 
     ReadGoodsIssueDTO toDto(GoodsIssue goodsIssue);

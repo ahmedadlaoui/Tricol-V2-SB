@@ -11,21 +11,21 @@ public class PurchaseOrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false)
-    private Integer quantity;
-    
+    private Double quantity;
+
     @Column(nullable = false)
     private Double unitPrice;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_order_id", nullable = false)
     private PurchaseOrder purchaseOrder;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
-    
+
     @OneToMany(mappedBy = "purchaseOrderLine", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<StockLot> stockLots;
 }
