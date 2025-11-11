@@ -10,7 +10,6 @@ public class ReadProductDTO {
     private String description;
     private Integer unitPrice;
     private String category;
-    private Double currentStock;
     private Double reorderPoint;
     private String unitOfMeasure;
 }

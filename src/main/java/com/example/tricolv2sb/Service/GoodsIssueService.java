@@ -3,17 +3,21 @@ package com.example.tricolv2sb.Service;
 import com.example.tricolv2sb.DTO.CreateGoodsIssueDTO;
 import com.example.tricolv2sb.DTO.ReadGoodsIssueDTO;
 import com.example.tricolv2sb.DTO.UpdateGoodsIssueDTO;
-import com.example.tricolv2sb.Entity.GoodsIssue;
+import com.example.tricolv2sb.Entity.*;
 import com.example.tricolv2sb.Entity.Enum.GoodsIssueStatus;
+import com.example.tricolv2sb.Entity.Enum.StockMovementType;
 import com.example.tricolv2sb.Exception.GoodsIssueNotFoundException;
+import com.example.tricolv2sb.Exception.ProductNotFoundException;
 import com.example.tricolv2sb.Mapper.GoodsIssueMapper;
-import com.example.tricolv2sb.Repository.GoodsIssueRepository;
+import com.example.tricolv2sb.Repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +26,10 @@ import java.util.Optional;
 public class GoodsIssueService {
 
     private final GoodsIssueRepository goodsIssueRepository;
+    private final GoodsIssueLineRepository goodsIssueLineRepository;
+    private final ProductRepository productRepository;
+    private final StockLotRepository stockLotRepository;
+    private final StockMovementRepository stockMovementRepository;
     private final GoodsIssueMapper goodsIssueMapper;
 
     @Transactional(readOnly = true)
@@ -45,13 +53,24 @@ public class GoodsIssueService {
     public ReadGoodsIssueDTO createGoodsIssue(CreateGoodsIssueDTO dto) {
         GoodsIssue goodsIssue = goodsIssueMapper.toEntity(dto);
 
-        // Generate unique issue number
         String issueNumber = generateIssueNumber();
         goodsIssue.setIssueNumber(issueNumber);
-
-        // Set initial status to DRAFT
         goodsIssue.setStatus(GoodsIssueStatus.DRAFT);
 
+        List<GoodsIssueLine> issueLines = new ArrayList<>();
+        for (var lineDto : dto.getIssueLines()) {
+            Product product = productRepository.findById(lineDto.getProductId())
+                    .orElseThrow(() -> new ProductNotFoundException(
+                            "Product with ID " + lineDto.getProductId() + " not found"));
+
+            GoodsIssueLine line = new GoodsIssueLine();
+            line.setProduct(product);
+            line.setQuantity(lineDto.getQuantity());
+            line.setGoodsIssue(goodsIssue);
+            issueLines.add(line);
+        }
+
+        goodsIssue.setIssueLines(new HashSet<>(issueLines));
         GoodsIssue savedGoodsIssue = goodsIssueRepository.save(goodsIssue);
         return goodsIssueMapper.toDto(savedGoodsIssue);
     }
@@ -62,7 +81,6 @@ public class GoodsIssueService {
                 .orElseThrow(() -> new GoodsIssueNotFoundException(
                         "Goods issue with ID " + id + " not found"));
 
-        // Only allow updates if status is DRAFT
         if (existingGoodsIssue.getStatus() != GoodsIssueStatus.DRAFT) {
             throw new IllegalStateException(
                     "Cannot update goods issue with status " + existingGoodsIssue.getStatus());
@@ -79,7 +97,6 @@ public class GoodsIssueService {
                 .orElseThrow(() -> new GoodsIssueNotFoundException(
                         "Goods issue with ID " + id + " not found"));
 
-        // Only allow deletion if status is DRAFT
         if (goodsIssue.getStatus() != GoodsIssueStatus.DRAFT) {
             throw new IllegalStateException(
                     "Cannot delete goods issue with status " + goodsIssue.getStatus() +
@@ -97,15 +114,71 @@ public class GoodsIssueService {
 
         if (goodsIssue.getStatus() != GoodsIssueStatus.DRAFT) {
             throw new IllegalStateException(
-                    "Only DRAFT goods issues can be validated");
+                    "Only DRAFT goods issues can be validated. Current status: " + goodsIssue.getStatus());
         }
 
-        // Change status to VALIDATED
+        List<GoodsIssueLine> issueLines = goodsIssueLineRepository.findByGoodsIssueId(id);
+
+        if (issueLines.isEmpty()) {
+            throw new IllegalStateException("Cannot validate goods issue without issue lines");
+        }
+
+        for (GoodsIssueLine line : issueLines) {
+            processGoodsIssueLineFIFO(line);
+        }
+
         goodsIssue.setStatus(GoodsIssueStatus.VALIDATED);
         goodsIssueRepository.save(goodsIssue);
+    }
 
-        // Note: Stock movements will be created automatically via the StockMovement
-        // logic
+    /**
+     * Process a goods issue line using FIFO algorithm
+     * Consumes stock from oldest lots first and creates OUT stock movements
+     */
+    private void processGoodsIssueLineFIFO(GoodsIssueLine line) {
+        Long productId = line.getProduct().getId();
+        Double requiredQuantity = line.getQuantity();
+
+        // Check total available stock
+        Double availableStock = stockLotRepository.calculateTotalAvailableStock(productId);
+        if (availableStock < requiredQuantity) {
+            throw new IllegalStateException(
+                    String.format("Insufficient stock for product ID %d. Required: %.2f, Available: %.2f",
+                            productId, requiredQuantity, availableStock));
+        }
+
+        List<StockLot> availableLots = stockLotRepository.findAvailableLotsByProductIdOrderByEntryDate(productId);
+
+        Double remainingToConsume = requiredQuantity;
+
+        for (StockLot lot : availableLots) {
+            if (remainingToConsume <= 0) {
+                break;
+            }
+
+            Double lotAvailable = lot.getRemainingQuantity();
+            Double quantityToConsume = Math.min(lotAvailable, remainingToConsume);
+
+            lot.setRemainingQuantity(lotAvailable - quantityToConsume);
+            stockLotRepository.save(lot);
+
+            StockMovement movement = new StockMovement();
+            movement.setMovementType(StockMovementType.OUT);
+            movement.setQuantity(quantityToConsume);
+            movement.setMovementDate(LocalDate.now());
+            movement.setProduct(line.getProduct());
+            movement.setStockLot(lot);
+            movement.setGoodsIssueLine(line);
+            stockMovementRepository.save(movement);
+
+            remainingToConsume -= quantityToConsume;
+        }
+
+        if (remainingToConsume > 0.001) {
+            throw new IllegalStateException(
+                    String.format("Failed to consume required quantity for product ID %d. Remaining: %.2f",
+                            productId, remainingToConsume));
+        }
     }
 
     @Transactional
@@ -123,10 +196,6 @@ public class GoodsIssueService {
         goodsIssueRepository.save(goodsIssue);
     }
 
-    /**
-     * Generate a unique issue number
-     * Format: GI-YYYYMMDD-XXX
-     */
     private String generateIssueNumber() {
         String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         long count = goodsIssueRepository.count() + 1;

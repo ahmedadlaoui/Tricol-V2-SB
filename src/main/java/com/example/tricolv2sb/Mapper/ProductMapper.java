@@ -10,20 +10,18 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-    
+
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "currentStock", ignore = true)
     @Mapping(target = "purchaseOrderLines", ignore = true)
     @Mapping(target = "goodsIssueLines", ignore = true)
     @Mapping(target = "stockLots", ignore = true)
     @Mapping(target = "stockMovements", ignore = true)
     Product toEntity(CreateProductDTO createDto);
-    
+
     ReadProductDTO toDto(Product product);
-    
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "reference", ignore = true)
-    @Mapping(target = "currentStock", ignore = true)
     @Mapping(target = "purchaseOrderLines", ignore = true)
     @Mapping(target = "goodsIssueLines", ignore = true)
     @Mapping(target = "stockLots", ignore = true)

@@ -10,22 +10,24 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 public interface PurchaseOrderControllerInterface {
-    
+
     @GetMapping
     ResponseEntity<List<ReadPurchaseOrderDTO>> getAllPurchaseOrders();
-    
+
     @GetMapping("/{id}")
     ResponseEntity<ReadPurchaseOrderDTO> getPurchaseOrderById(@PathVariable Long id);
-    
+
     @PostMapping
-    ResponseEntity<ReadPurchaseOrderDTO> createPurchaseOrder(@Valid @RequestBody CreatePurchaseOrderDTO createPurchaseOrderDTO);
-    
+    ResponseEntity<ReadPurchaseOrderDTO> createPurchaseOrder(
+            @Valid @RequestBody CreatePurchaseOrderDTO createPurchaseOrderDTO);
+
     @PutMapping("/{id}")
-    ResponseEntity<ReadPurchaseOrderDTO> updatePurchaseOrder(@PathVariable Long id, @Valid @RequestBody UpdatePurchaseOrderDTO updatePurchaseOrderDTO);
-    
+    ResponseEntity<ReadPurchaseOrderDTO> updatePurchaseOrder(@PathVariable Long id,
+            @Valid @RequestBody UpdatePurchaseOrderDTO updatePurchaseOrderDTO);
+
     @DeleteMapping("/{id}")
     ResponseEntity<Void> deletePurchaseOrder(@PathVariable Long id);
-    
-    @GetMapping("/fournisseur/{id}")
+
+    @GetMapping("/supplier/{id}")
     ResponseEntity<List<ReadPurchaseOrderDTO>> getPurchaseOrdersBySupplier(@PathVariable Long id);
 }

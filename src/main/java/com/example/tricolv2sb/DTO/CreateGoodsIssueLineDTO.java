@@ -8,13 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CreateGoodsIssueLineDTO {
-    
-    @NotNull(message = "Goods issue ID is required")
-    private Long goodsIssueId;
-    
+
     @NotNull(message = "Product ID is required")
     private Long productId;
-    
+
     @NotNull(message = "Quantity is required")
     @Positive(message = "Quantity must be positive")
     private Double quantity;
