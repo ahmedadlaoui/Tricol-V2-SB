@@ -34,3 +34,6 @@ build/
 
 ### Local Spring Boot Config ###
 application-local.properties
+
+### Liquibase ###
+db.changelog
