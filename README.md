@@ -30,10 +30,10 @@ This is the Spring Boot REST API for the Tricol company's supply chain managemen
 
 This application follows a strict layered architecture:
 
-* **Controller (`web.rest`)**: Exposes API endpoints and handles HTTP requests/validation.
-* **Service (`service`)**: Contains all business logic (e.g., FIFO algorithm, calculations).
-* **Repository (`repository`)**: Data access layer that communicates with the database via Spring Data JPA.
-* **Domain (`domain`)**: Contains the JPA `@Entity` objects that map to database tables.
+* **Controller**: Exposes API endpoints and handles HTTP requests/validation.
+* **Service**: Contains all business logic (e.g., FIFO algorithm, calculations).
+* **Repository**: Data access layer that communicates with the database via Spring Data JPA.
+* **Entity**: Contains the JPA `@Entity` objects that map to database tables.
 
 ### DTOs and Mapping
 
